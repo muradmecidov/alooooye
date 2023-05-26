@@ -1,0 +1,73 @@
+﻿@model List<Team>
+@{
+    ViewData["Title"] = "Index";
+    int count = 1;
+}
+<div class="container-scroller">
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+
+                <td>
+                    <a class="btn btn-success" asp-area="Admin" asp-controller="Teams" asp-action="Create">Create</a>
+                    </td>
+
+            <p class="card-description">
+
+
+            </p>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>
+                                #
+                            </th>
+                            <th>
+                              Fullname
+                            </th>
+                            <th>
+                                Description
+                            </th>
+                            <th>
+                                Image
+                            </th> 
+                        </tr>
+                    </thead>
+                    <tbody>
+                            @foreach (Team item in Model)
+                            {
+                                    <tr>
+                                        <td>
+                                        @count
+                                        </td>
+                                        <td>
+                                        @item.Name
+                                        </td>
+                                        <td>
+                                        @item.Description
+                                        </td>
+                                        <td>
+                                                <img src="~/assets/img/team/@item.ImagePath"  height="150">
+                                        </td>
+                                        <td>
+                                         <a class="btn btn-warning text-light" asp-area="Admin" asp-controller="Teams" asp-action="Update" asp-route-Id="@item.Id">
+                                         <i class="bi bi-arrow-counterclockwise"></i> 
+                                         </a>
+                                         <a class="btn btn-danger text-light" asp-area="Admin" asp-controller="Teams" asp-action="Delete" asp-route-Id="@item.Id">
+                                         <i class="bi bi-trash-fill"></i>
+                                         </a>
+
+
+                                        </td>
+                                    </tr>
+                                count++;
+                            }
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
